@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pixel Gaming</title>
+    <title>El Futuro de los RPGs en 2025 - Pixel Gaming</title>
     <style>
         * {
             margin: 0;
@@ -12,13 +12,11 @@
             box-sizing: border-box;
         }
 
-        
         @font-face {
-        font-family: 'Azonix';
-        src: url('fonts/Azonix.otf') format('opentype');
+        font-family: 'Arcadian';
+        src: url('fonts/Arcadian.ttf') format('truetype');    
         }
-        
-        
+
         body {
             font-family: 'Arial', sans-serif;
             color: #fff;
@@ -240,6 +238,7 @@
             width: 80%;
         }
 
+        /* Botón especial de inicio */
         .back-home {
             background: linear-gradient(45deg, rgba(100, 20, 165, 0.6), rgba(138, 43, 226, 0.6)) !important;
             border: 2px solid rgba(255, 215, 0, 0.4) !important;
@@ -247,6 +246,7 @@
             position: relative;
             overflow: hidden;
         }
+
 
         .back-home::after {
             content: '';
@@ -270,85 +270,69 @@
             box-shadow: 0 6px 20px rgba(100, 20, 165, 0.4) !important;
         }
 
-        /* Menú desplegable mejorado */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 220px;
-            box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.6);
-            z-index: 1001;
-            border-radius: 12px;
-            overflow: hidden;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transform: translateX(-50%) translateY(-10px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .dropdown-content a {
-            color: #fff;
-            padding: 15px 20px;
-            text-decoration: none;
-            display: block;
-            font-size: 1em;
-            margin: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover {
-            background: linear-gradient(90deg, rgba(100, 20, 165, 0.8), rgba(255, 69, 0, 0.6));
-            color: #ffd700;
-            transform: translateX(5px);
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown-arrow {
-            margin-left: 8px;
-            font-size: 0.8em;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        /* Sección principal mejorada */
-        .main-content {
-            text-align: center;
-            padding: 100px 20px;
+        /* Contenedor del artículo */
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px;
             position: relative;
             z-index: 1;
         }
 
-        .main-content::before {
+        /* Botón de volver mejorado */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #6414a5, #4a0f7a);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(100, 20, 165, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-button::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(100, 20, 165, 0.5);
+        }
+
+        .back-button:hover::before {
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+
+        /* Encabezado del artículo */
+        .article-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             animation: pulse 4s ease-in-out infinite;
@@ -366,12 +350,11 @@
             }
         }
 
-        .main-content h2 {
-
-            font-size: 3.2em;
+        .article-title {
+            font-size: 3em;
+            margin-bottom: 20px;
             color: #fff;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            margin-bottom: 20px;
             animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
@@ -380,33 +363,40 @@
             to { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.6); }
         }
 
-        .slogan {
-            font-size: 1.8em;
-            margin-top: 30px;
-            color: #f0f0f0;
-            font-weight: 300;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .article-meta {
+            color: #ffd700;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
-        /* Apartado de Foto para el blog mejorado */
-        .blog-photo {
-            margin: 60px auto;
-            width: 90%;
-            max-width: 800px;
+        .article-author {
+            color: #f0f0f0;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        /* Imagen destacada mejorada */
+        .article-featured-image {
+            width: 100%;
             height: 450px;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(5px);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             border: 2px solid rgba(255, 215, 0, 0.3);
             position: relative;
+            margin: 40px 0;
+            font-size: 6em;
+            color: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .blog-photo::before {
+        .article-featured-image::before {
             content: '';
             position: absolute;
             top: -2px;
@@ -425,7 +415,7 @@
             50% { background-position: 100% 50%; }
         }
 
-        .blog-photo img {
+        .article-featured-image img {
             max-width: 100%;
             max-height: 100%;
             object-fit: cover;
@@ -433,25 +423,25 @@
             transition: transform 0.3s ease;
         }
 
-        .blog-photo:hover img {
-            transform: scale(1.05);
+        .article-featured-image:hover img {
+            transform: scale(1.02);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
         }
 
-        /* Secciones mejoradas */
-        section {
-            padding: 60px 40px;
-            margin: 40px auto;
-            max-width: 1200px;
+        /* Contenido del artículo mejorado */
+        .article-content {
             background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
+            padding: 40px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            margin-bottom: 40px;
         }
 
-        section::before {
+        .article-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -462,34 +452,87 @@
             transition: left 0.6s ease;
         }
 
-        section:hover::before {
+        .article-content:hover::before {
             left: 100%;
         }
 
-        section h3 {
+        .article-content h2 {
             color: #ffd700;
             font-size: 2.2em;
+            margin-top: 40px;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        section p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #e0e0e0;
-        }
-
-        section a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
             position: relative;
         }
 
-        section a:hover {
+        .article-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .article-content h3 {
             color: #fff;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-content p {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+            text-align: justify;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .article-content ul {
+            margin: 25px 0;
+            padding-left: 40px;
+        }
+
+        .article-content li {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .article-content li strong {
+            color: #ffd700;
+        }
+
+        /* Caja destacada mejorada */
+        .highlight-box {
+            background: rgba(100, 20, 165, 0.3);
+            backdrop-filter: blur(5px);
+            border-left: 4px solid #6414a5;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 4px 20px rgba(100, 20, 165, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffd700, #ff6b6b);
+            animation: highlightPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .highlight-box strong {
+            color: #ffd700;
+            font-size: 1.1em;
         }
 
         /* Pie de página mejorado */
@@ -520,17 +563,6 @@
             50% { opacity: 1; }
         }
 
-        /* Elementos flotantes adicionales */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
         /* Responsividad mejorada */
         @media (max-width: 768px) {
             header h1 {
@@ -547,33 +579,30 @@
                 font-size: 1em;
             }
 
-            .main-content {
-                padding: 60px 15px;
-            }
-
-            .main-content h2 {
-                
-                font-size: 2.5em;
-            }
-
-            .blog-photo {
-                height: 300px;
-                width: 95%;
-                margin: 40px auto;
-            }
-
-            section {
+            .article-container {
                 padding: 40px 20px;
-                margin: 20px 10px;
             }
 
-            section h3 {
+            .article-title {
+                font-size: 2.2em;
+            }
+
+            .article-featured-image {
+                height: 300px;
+                font-size: 4em;
+                margin: 30px 0;
+            }
+
+            .article-content {
+                padding: 25px;
+            }
+
+            .article-content h2 {
                 font-size: 1.8em;
             }
 
-            .dropdown-content {
-                min-width: 180px;
-                font-size: 0.9em;
+            .article-content h3 {
+                font-size: 1.4em;
             }
 
             .floating-elements::before,
@@ -583,17 +612,22 @@
         }
 
         @media (max-width: 480px) {
-            .main-content h2 {
-                font-size: 2em;
-            }
-
-            .slogan {
-                font-size: 1.4em;
+            .article-title {
+                font-size: 1.8em;
             }
 
             nav a {
                 padding: 10px 12px;
                 font-size: 0.9em;
+            }
+
+            .article-content {
+                padding: 20px;
+            }
+
+            .article-content p,
+            .article-content li {
+                font-size: 1em;
             }
         }
     </style>
@@ -610,58 +644,93 @@
 
     <!-- Menú de navegación -->
     <nav>
-        <a href="#" class="back-home" style="background: linear-gradient(45deg, rgba(255, 215, 0, 0.6), rgba(255, 69, 0, 0.6)) !important;">🏠 Inicio</a>
-        <div class="dropdown">
-            <a href="#opinion" class="back-home">
-                Artículos de Opinión
-                <span class="dropdown-arrow">▼</span>
-            </a>
-            <div class="dropdown-content">
-                <a href="articulos-menu.html">Ver Todos los Artículos</a>
-                <a href="ultimo-articulo.html">Último Artículo</a>
-            </div>
-        </div>
+        <a href="index.html" class="back-home">🏠 Inicio</a>
+        <a href="articulos-menu.html" class="back-home" style="background: linear-gradient(45deg, rgba(255, 215, 0, 0.6), rgba(255, 69, 0, 0.6)) !important;">Artículos</a>
         <a href="juegos-recientes.html" class="back-home">Juegos Recientes</a>
         <a href="juegos-estreno.html" class="back-home">Juegos por Estrenar</a>
         <a href="acerca-de.html" class="back-home">Acerca de</a>
-        
     </nav>
 
-    <!-- Sección Principal -->
-    <div class="main-content" style="font-family: 'Azonix', Arial, sans-serif;">
-        <h2>Bienvenidos a Pixel Gaming</h2>
-        <p class="slogan">Donde los videojuegos cobran vida.</p>
+    <!-- Contenido del artículo -->
+    <div class="article-container">
+        <a href="articulos-menu.html" class="back-button">← Volver a Artículos</a>
+        
+        <div class="article-header">
+            <h1 class="article-title"style="font-family: 'Arcadian', Arial, sans-serif;">El Futuro de los RPGs en 2025</h1>
+            <p class="article-meta">2 de Junio, 2025</p>
+            <p class="article-author">Por el equipo de Pixel Gaming</p>
+        </div>
+
+        <div class="article-featured-image"><img src="RPG Games.webp" alt="Foto articulo"></div>
+
+        <div class="article-content">
+            <p>
+                Los juegos de rol (RPGs) han sido durante décadas uno de los géneros más queridos y duraderos en la industria del gaming. Desde los primeros días de Dungeons & Dragons hasta los modernos RPGs de mundo abierto, este género ha evolucionado constantemente, adaptándose a nuevas tecnologías y expectativas de los jugadores.
+            </p>
+
+            <h2>La Era Dorada de los RPGs Indie</h2>
+            <p>
+                2025 marca un punto de inflexión para los RPGs independientes. Con herramientas de desarrollo más accesibles y plataformas de distribución digital que permiten a pequeños estudios llegar a audiencias globales, estamos viendo una explosión de creatividad sin precedentes en el género.
+            </p>
+
+            <div class="highlight-box">
+                <strong>Tendencia Clave:</strong> Los RPGs indie están recuperando elementos clásicos como la narrativa profunda y los sistemas de progresión complejos, mientras incorporan mecánicas modernas e innovadoras.
+            </div>
+
+            <h2>Personalización y Narrativa Adaptativa</h2>
+            <p>
+                El futuro de los RPGs se centra en la personalización total de la experiencia. Los jugadores ya no se conforman con elegir entre unas pocas opciones predefinidas; quieren crear personajes únicos con historias que se adapten a sus decisiones.
+            </p>
+
+            <h3>Innovaciones en Desarrollo:</h3>
+            <ul>
+                <li><strong>Sistemas de moralidad complejos:</strong> Decisiones que no son simplemente "buenas" o "malas"</li>
+                <li><strong>Consecuencias a largo plazo:</strong> Acciones que afectan el mundo de manera permanente</li>
+                <li><strong>Narrativa ramificada:</strong> Historias que cambian drásticamente según las elecciones del jugador</li>
+                <li><strong>Personalización profunda:</strong> Desde la apariencia hasta las habilidades y trasfondo del personaje</li>
+            </ul>
+
+            <h2>Tecnología al Servicio de la Inmersión</h2>
+            <p>
+                Los avances tecnológicos están permitiendo niveles de inmersión nunca antes vistos en los RPGs. La realidad virtual, la inteligencia artificial y los gráficos de nueva generación están creando mundos que se sienten verdaderamente vivos.
+            </p>
+
+            <p>
+                Los NPCs ya no son simples dispensadores de misiones; ahora pueden mantener conversaciones complejas, recordar interacciones pasadas y desarrollar relaciones genuinas con el jugador. Esto crea una sensación de comunidad y pertenencia que va más allá de la simple mecánica de juego.
+            </p>
+
+            <h2>El Renacimiento de los RPGs Clásicos</h2>
+            <p>
+                Paradójicamente, mientras la tecnología avanza, también vemos un renacimiento de los RPGs clásicos. Los jugadores están redescubriendo el encanto de los sistemas de combate por turnos, las mazmorras complejas y las historias lineales bien contadas.
+            </p>
+
+            <div class="highlight-box">
+                <strong>Observación Interesante:</strong> Los RPGs que mejor funcionan en 2025 son aquellos que combinan la nostalgia de los clásicos con la innovación de las nuevas tecnologías.
+            </div>
+
+            <h2>Comunidad y Experiencias Compartidas</h2>
+            <p>
+                El futuro de los RPGs también está en la comunidad. Los juegos están incorporando elementos sociales que permiten a los jugadores compartir sus experiencias, crear contenido y colaborar en la construcción de mundos ficticios.
+            </p>
+
+            <p>
+                Las herramientas de creación integradas permiten a los jugadores diseñar sus propias misiones, personajes y hasta regiones completas, extendiendo la vida útil de los juegos de manera exponencial.
+            </p>
+
+            <h2>Desafíos y Oportunidades</h2>
+            <p>
+                Sin embargo, este crecimiento no está exento de desafíos. La saturación del mercado, las expectativas cada vez más altas de los jugadores y la necesidad de innovar constantemente presionan a los desarrolladores a encontrar ese equilibrio perfecto entre familiaridad e innovación.
+            </p>
+
+            <p>
+                Los RPGs del futuro deberán ser más que simples juegos; necesitan ser experiencias transformadoras que permitan a los jugadores explorar no solo mundos fantásticos, sino también aspectos de su propia personalidad y creatividad.
+            </p>
+
+            <p>
+                El género de los RPGs está viviendo una de sus épocas más emocionantes. Con la combinación perfecta de nostalgia y innovación, los próximos años prometen experiencias que redefinirán lo que significa "jugar un rol" en el mundo digital.
+            </p>
+        </div>
     </div>
-    
-
-    <!-- Foto para el blog -->
-    <div class="blog-photo">
-        <img src="Zelda HD.webp" alt="Foto Blog">
-    </div>
-
-    <!-- Sección Artículos de Opinión -->
-    <section id="opinion">
-        <h3>Artículos de Opinión</h3>
-        <p>Explora nuestras opiniones y análisis sobre los últimos juegos y tendencias en la industria del gaming. <a href="articulos-menu.html">Ver todos los artículos →</a></p>
-    </section>
-
-    <!-- Sección Juegos Recientes -->
-    <section id="recientes">
-        <h3>Juegos Recientes</h3>
-        <p>Descubre los juegos más recientes que han llegado a nuestras plataformas favoritas. <a href="juegos-recientes.html">Ver todos los juegos recientes →</a></p>
-    </section>
-
-    <!-- Sección Juegos por Estrenar -->
-    <section id="estrenar">
-        <h3>Juegos por Estrenar</h3>
-        <p>Entérate de los próximos lanzamientos de juegos que no puedes perderte.<a href="juegos-estreno.html">Ver los proximos grandes juegos por empezar →</a></p>
-    </section>
-
-    <!-- Sección Acerca de -->
-    <section id="acerca">
-        <h3>Acerca de Pixel Gaming</h3>
-        <p>Pixel Gaming es un sitio dedicado a los apasionados de los videojuegos, con artículos, noticias y análisis de lo mejor del mundo gaming.<a href="acerca-de.html">Ver informacion sobre el proyecto →</a></p>
-    </section>
 
     <!-- Pie de página -->
     <footer>

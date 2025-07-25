@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pixel Gaming</title>
+    <title>Artículos de Opinión - Pixel Gaming</title>
     <style>
         * {
             margin: 0;
@@ -12,18 +12,38 @@
             box-sizing: border-box;
         }
 
-        
+        @font-face {
+        font-family: 'MOELA';
+        src: url('fonts/MOELA.otf') format('truetype'); 
+        }
+
+        @font-face {
+        font-family: 'Arcadian';
+        src: url('fonts/Arcadian.ttf') format('truetype');    
+        }
+
         @font-face {
         font-family: 'Azonix';
-        src: url('fonts/Azonix.otf') format('opentype');
+        src: url('fonts/Azonix.otf') format('opentype');    
         }
-        
-        
+
+        @font-face {
+        font-family: 'Manila Script';
+        src: url('fonts/Manila Script.otf') format('opentype');    
+        }
+
+        @font-face {
+        font-family: 'Meravila-Regular';
+        src: url('fonts/Meravila-Regular.ttf') format('truetype');    
+        }
+             
+
         body {
             font-family: 'Arial', sans-serif;
             color: #fff;
             overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
 
         /* Fondo animado con patrón de gaming */
@@ -240,6 +260,7 @@
             width: 80%;
         }
 
+        /* Botón especial de inicio */
         .back-home {
             background: linear-gradient(45deg, rgba(100, 20, 165, 0.6), rgba(138, 43, 226, 0.6)) !important;
             border: 2px solid rgba(255, 215, 0, 0.4) !important;
@@ -270,108 +291,21 @@
             box-shadow: 0 6px 20px rgba(100, 20, 165, 0.4) !important;
         }
 
-        /* Menú desplegable mejorado */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 220px;
-            box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.6);
-            z-index: 1001;
-            border-radius: 12px;
-            overflow: hidden;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transform: translateX(-50%) translateY(-10px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .dropdown-content a {
-            color: #fff;
-            padding: 15px 20px;
-            text-decoration: none;
-            display: block;
-            font-size: 1em;
-            margin: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover {
-            background: linear-gradient(90deg, rgba(100, 20, 165, 0.8), rgba(255, 69, 0, 0.6));
-            color: #ffd700;
-            transform: translateX(5px);
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown-arrow {
-            margin-left: 8px;
-            font-size: 0.8em;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        /* Sección principal mejorada */
-        .main-content {
-            text-align: center;
-            padding: 100px 20px;
+        /* Contenido principal mejorado */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
             position: relative;
             z-index: 1;
         }
 
-        .main-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 4s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0.8;
-            }
-        }
-
-        .main-content h2 {
-
+        .page-title {
+            text-align: center;
             font-size: 3.2em;
+            margin-bottom: 20px;
             color: #fff;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            margin-bottom: 20px;
             animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
@@ -380,78 +314,37 @@
             to { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.6); }
         }
 
-        .slogan {
-            font-size: 1.8em;
-            margin-top: 30px;
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.4em;
+            margin-bottom: 60px;
             color: #f0f0f0;
             font-weight: 300;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* Apartado de Foto para el blog mejorado */
-        .blog-photo {
-            margin: 60px auto;
-            width: 90%;
-            max-width: 800px;
-            height: 450px;
+        /* Grid de artículos mejorado */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .article-card {
             background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            position: relative;
-        }
-
-        .blog-photo::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1);
-            background-size: 400% 400%;
-            border-radius: 20px;
-            z-index: -1;
-            animation: borderGlow 4s ease infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .blog-photo img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            border-radius: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .blog-photo:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Secciones mejoradas */
-        section {
-            padding: 60px 40px;
-            margin: 40px auto;
-            max-width: 1200px;
-            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        section::before {
+        .article-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -462,34 +355,130 @@
             transition: left 0.6s ease;
         }
 
-        section:hover::before {
+        .article-card:hover::before {
             left: 100%;
         }
 
-        section h3 {
-            color: #ffd700;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .article-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 20px 40px rgba(100, 20, 165, 0.4);
+            background: rgba(0, 0, 0, 0.4);
         }
 
-        section p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #e0e0e0;
-        }
-
-        section a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
+        .article-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, 
+                rgba(100, 20, 165, 0.8) 0%, 
+                rgba(138, 43, 226, 0.6) 50%, 
+                rgba(58, 74, 40, 0.8) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 3.5em;
+            color: rgba(255, 255, 255, 0.9);
             position: relative;
+            overflow: hidden;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: imageShine 4s ease-in-out infinite;
         }
 
-        section a:hover {
+        @keyframes imageShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .article-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover .article-image img{
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .article-title {
+            font-size: 1.6em;
+            margin-bottom: 12px;
             color: #fff;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .article-card:hover .article-title {
+            color: #ffd700;
+        }
+
+        .article-date {
+            color: #ffd700;
+            font-size: 1em;
+            margin-bottom: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-excerpt {
+            color: #e0e0e0;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        .read-more {
+            display: inline-block;
+            background: linear-gradient(45deg, #6414a5, #8a2be2);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1em;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .read-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .read-more:hover::before {
+            left: 100%;
+        }
+
+        .read-more:hover {
+            background: linear-gradient(45deg, #4a0f7a, #6a1b9a);
+            transform: scale(1.05);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(100, 20, 165, 0.4);
         }
 
         /* Pie de página mejorado */
@@ -499,7 +488,7 @@
             color: white;
             text-align: center;
             padding: 30px;
-            margin-top: 50px;
+            margin-top: 80px;
             border-top: 2px solid rgba(255, 215, 0, 0.3);
             position: relative;
         }
@@ -520,19 +509,21 @@
             50% { opacity: 1; }
         }
 
-        /* Elementos flotantes adicionales */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
         /* Responsividad mejorada */
         @media (max-width: 768px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .page-title {
+                font-size: 2.5em;
+            }
+            
+            .container {
+                padding: 40px 15px;
+            }
+
             header h1 {
                 font-size: 2.2em;
             }
@@ -547,33 +538,13 @@
                 font-size: 1em;
             }
 
-            .main-content {
-                padding: 60px 15px;
+            .article-card {
+                padding: 25px;
             }
 
-            .main-content h2 {
-                
-                font-size: 2.5em;
-            }
-
-            .blog-photo {
-                height: 300px;
-                width: 95%;
-                margin: 40px auto;
-            }
-
-            section {
-                padding: 40px 20px;
-                margin: 20px 10px;
-            }
-
-            section h3 {
-                font-size: 1.8em;
-            }
-
-            .dropdown-content {
-                min-width: 180px;
-                font-size: 0.9em;
+            .article-image {
+                height: 180px;
+                font-size: 3em;
             }
 
             .floating-elements::before,
@@ -583,17 +554,30 @@
         }
 
         @media (max-width: 480px) {
-            .main-content h2 {
+            .page-title {
                 font-size: 2em;
             }
 
-            .slogan {
-                font-size: 1.4em;
+            .page-subtitle {
+                font-size: 1.2em;
             }
 
             nav a {
                 padding: 10px 12px;
                 font-size: 0.9em;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .article-card {
+                padding: 20px;
+            }
+
+            .article-title {
+                font-size: 1.4em;
             }
         }
     </style>
@@ -610,58 +594,65 @@
 
     <!-- Menú de navegación -->
     <nav>
-        <a href="#" class="back-home" style="background: linear-gradient(45deg, rgba(255, 215, 0, 0.6), rgba(255, 69, 0, 0.6)) !important;">🏠 Inicio</a>
-        <div class="dropdown">
-            <a href="#opinion" class="back-home">
-                Artículos de Opinión
-                <span class="dropdown-arrow">▼</span>
-            </a>
-            <div class="dropdown-content">
-                <a href="articulos-menu.html">Ver Todos los Artículos</a>
-                <a href="ultimo-articulo.html">Último Artículo</a>
-            </div>
-        </div>
+        <a href="index.html" class="back-home">🏠 Inicio</a>
+        <a href="#" class="back-home" style="background: linear-gradient(45deg, rgba(255, 215, 0, 0.6), rgba(255, 69, 0, 0.6)) !important;">Artículos de Opinión</a>
         <a href="juegos-recientes.html" class="back-home">Juegos Recientes</a>
         <a href="juegos-estreno.html" class="back-home">Juegos por Estrenar</a>
         <a href="acerca-de.html" class="back-home">Acerca de</a>
-        
     </nav>
 
-    <!-- Sección Principal -->
-    <div class="main-content" style="font-family: 'Azonix', Arial, sans-serif;">
-        <h2>Bienvenidos a Pixel Gaming</h2>
-        <p class="slogan">Donde los videojuegos cobran vida.</p>
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="page-title" style="font-family: 'MOELA', Arial, sans-serif;">Artículos de Opinión</h1>
+        <p class="page-subtitle"style="font-family: 'MOELA', Arial, sans-serif;">Descubre nuestros análisis y opiniones sobre el mundo gaming</p>
+        
+
+        <div class="articles-grid">
+            <!-- Artículo 1 -->
+            <div class="article-card" onclick="window.location.href='articulo1.html'">
+                <div class="article-image"><img src="RPG Games.webp" alt="Foto Blog"></div>
+                <h2 class="article-title" style="font-family: 'Arcadian', Arial, sans-serif; Font-size: 38px">El Futuro de los RPGs en 2025</h2>
+                <p class="article-date">2 de Junio, 2025</p>
+                <p class="article-excerpt"style="font-family: 'Meravila-Regular', Arial, sans-serif; Font-size: 27px">
+                    Los juegos de rol han evolucionado dramáticamente en los últimos años. Analizamos las tendencias que marcarán el género en 2025 y cómo los desarrolladores están innovando para crear experiencias más inmersivas...
+                </p>
+                <a href="articulo1.html" class="read-more">Leer más</a>
+            </div>
+            
+            <!-- Artículo 2 -->
+            <div class="article-card" onclick="window.location.href='articulo2.html'">
+                <div class="article-image"><img src="Battle K.jpeg" alt="Foto Battle"></div>
+                <h2 class="article-title" style="font-family: 'Moela', Arial, sans-serif; Font-size: 28px">¿Son los Battle Royale Cosa del Pasado?</h2>
+                <p class="article-date">28 de Mayo, 2025</p>
+                <p class="article-excerpt" style="font-family: 'Meravila-Regular', Arial, sans-serif; Font-size: 27px">
+                    El género Battle Royale dominó la industria por años, pero ¿está perdiendo relevancia? Exploramos el estado actual del género y hacia dónde se dirige la industria del gaming competitivo...
+                </p>
+                <a href="articulo2.html" class="read-more">Leer más</a>
+            </div>
+
+            <!-- Artículo 3 -->
+            <div class="article-card" onclick="window.location.href='articulo3.html'">
+                <div class="article-image"><img src="juegos_indie.jpg" alt="Foto Indie"></div>
+                <h2 class="article-title" style="font-family: 'Manila Script', Arial, sans-serif; Font-size: 37px">El Futuro de los juegos indie en 2025</h2>
+                <p class="article-date">7 de Junio, 2025</p>
+                <p class="article-excerpt" style="font-family: 'Meravila-Regular', Arial, sans-serif; Font-size: 27px">
+                    Los juegos de rol han evolucionado dramáticamente en los últimos años. Analizamos las tendencias que marcarán el género en 2025 y cómo los desarrolladores están innovando para crear experiencias más inmersivas...
+                </p>
+                <a href="articulo3.html" class="read-more">Leer más</a>
+            </div>
+
+            <!-- Artículo 3 (Último artículo) -->
+            <div class="article-card" onclick="window.location.href='ultimo-articulo.html'">
+                <div class="article-image"><img src="ai-games.webp" alt="Foto AI"></div>
+                <h2 class="article-title" style="font-family: 'Azonix', Arial, sans-serif; Font-size: 23px">La Revolución de la IA en los Videojuegos</h2>
+                <p class="article-date">10 de Junio, 2025</p>
+                <p class="article-excerpt" style="font-family: 'Meravila-Regular', Arial, sans-serif; Font-size: 27px">
+                    La inteligencia artificial está transformando cómo experimentamos los videojuegos. Desde NPCs más realistas hasta generación procedural avanzada, exploramos cómo la IA está redefiniendo la industria...
+                </p>
+                <a href="ultimo-articulo.html" class="read-more">Leer más</a>
+            </div>
+        </div>
     </div>
-    
-
-    <!-- Foto para el blog -->
-    <div class="blog-photo">
-        <img src="Zelda HD.webp" alt="Foto Blog">
-    </div>
-
-    <!-- Sección Artículos de Opinión -->
-    <section id="opinion">
-        <h3>Artículos de Opinión</h3>
-        <p>Explora nuestras opiniones y análisis sobre los últimos juegos y tendencias en la industria del gaming. <a href="articulos-menu.html">Ver todos los artículos →</a></p>
-    </section>
-
-    <!-- Sección Juegos Recientes -->
-    <section id="recientes">
-        <h3>Juegos Recientes</h3>
-        <p>Descubre los juegos más recientes que han llegado a nuestras plataformas favoritas. <a href="juegos-recientes.html">Ver todos los juegos recientes →</a></p>
-    </section>
-
-    <!-- Sección Juegos por Estrenar -->
-    <section id="estrenar">
-        <h3>Juegos por Estrenar</h3>
-        <p>Entérate de los próximos lanzamientos de juegos que no puedes perderte.<a href="juegos-estreno.html">Ver los proximos grandes juegos por empezar →</a></p>
-    </section>
-
-    <!-- Sección Acerca de -->
-    <section id="acerca">
-        <h3>Acerca de Pixel Gaming</h3>
-        <p>Pixel Gaming es un sitio dedicado a los apasionados de los videojuegos, con artículos, noticias y análisis de lo mejor del mundo gaming.<a href="acerca-de.html">Ver informacion sobre el proyecto →</a></p>
-    </section>
 
     <!-- Pie de página -->
     <footer>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Juegos por Estrenar - Pixel Gaming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+        font-family: 'Azonix';
+        src: url('fonts/Azonix.otf') format('opentype');    
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fondo animado con patrón de gaming */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 255, 198, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: -3;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        /* Patrón de puntos pixelados */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -2;
+            animation: pixelMove 20s linear infinite;
+        }
+
+        /* Elementos flotantes de gaming */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-elements::before {
+            top: 20%;
+            left: 10%;
+            animation-delay: -2s;
+            box-shadow: 
+                100px 50px 0 rgba(255, 255, 255, 0.3),
+                200px 120px 0 rgba(255, 215, 0, 0.4),
+                300px 80px 0 rgba(138, 43, 226, 0.3),
+                400px 200px 0 rgba(0, 255, 127, 0.3),
+                500px 30px 0 rgba(255, 69, 0, 0.4);
+        }
+
+        .floating-elements::after {
+            top: 60%;
+            right: 10%;
+            animation-delay: -4s;
+            box-shadow: 
+                -150px -80px 0 rgba(255, 255, 255, 0.2),
+                -250px -20px 0 rgba(255, 215, 0, 0.3),
+                -100px -150px 0 rgba(138, 43, 226, 0.4),
+                -300px -100px 0 rgba(0, 255, 127, 0.2),
+                -200px -200px 0 rgba(255, 69, 0, 0.3);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background: 
+                    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 80%, rgba(120, 255, 198, 0.2) 0%, transparent 50%),
+                    linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+            50% {
+                background: 
+                    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 80%, rgba(120, 255, 198, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 40%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                    linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            }
+        }
+
+        @keyframes pixelMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(30px, 30px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Encabezado */
+        header {
+            background: rgba(100, 20, 165, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: headerShine 3s ease-in-out infinite;
+        }
+
+        @keyframes headerShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        header img {
+            width: 60px;
+            vertical-align: middle;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+        }
+
+        header h1 {
+            display: inline;
+            margin-left: 15px;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Menú de navegación */
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 25px;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        nav a:hover::before {
+            width: 80%;
+        }
+
+        .back-home {
+            background: linear-gradient(45deg, rgba(100, 20, 165, 0.6), rgba(138, 43, 226, 0.6)) !important;
+            border: 2px solid rgba(255, 215, 0, 0.4) !important;
+            border-radius: 25px !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-home::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .back-home:hover::after {
+            left: 100%;
+        }
+
+        .back-home:hover {
+            background: linear-gradient(45deg, rgba(100, 20, 165, 0.8), rgba(138, 43, 226, 0.8)) !important;
+            border-color: rgba(255, 215, 0, 0.8) !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 6px 20px rgba(100, 20, 165, 0.4) !important;
+        }
+
+        /* Título de la página */
+        .page-title {
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .page-title h2 {
+            font-size: 3.2em;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3); }
+            to { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        .page-title p {
+            font-size: 1.8em;
+            color: #f0f0f0;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contenedor de juegos */
+        .games-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Tarjeta de juego */
+        .game-card {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .game-card:hover::before {
+            left: 100%;
+        }
+
+        .game-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        /* Imagen del juego mejorada */
+        .game-image {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .game-image::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 400% 400%;
+            border-radius: 20px 20px 0 0;
+            z-index: -1;
+            animation: borderGlow 4s ease infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover .game-image::before {
+            opacity: 0.6;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+
+        .game-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+        }
+
+        /* Información del juego */
+        .game-info {
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-title:hover {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            transform: translateX(5px);
+        }
+
+        .game-description {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Fecha de lanzamiento */
+        .game-release-date {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            animation: dateGlow 2s ease-in-out infinite alternate;
+        }
+
+        .game-release-date::before {
+            content: '📅';
+            margin-right: 8px;
+        }
+
+        .game-release-date.coming-soon {
+            color: #ffd700;
+            animation: comingSoonPulse 1.5s ease-in-out infinite;
+        }
+
+        .game-release-date.coming-soon::before {
+            content: '⏰';
+        }
+
+        .game-release-date.this-year {
+            color: #4ecdc4;
+        }
+
+        .game-release-date.this-year::before {
+            content: '🎯';
+        }
+
+        @keyframes dateGlow {
+            from { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 107, 107, 0.3); }
+            to { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 107, 107, 0.6); }
+        }
+
+        @keyframes comingSoonPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.4);
+            }
+            50% { 
+                transform: scale(1.05); 
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        /* Botones de tiendas mejorados */
+        .store-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 100px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .store-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .store-btn:hover::before {
+            left: 100%;
+        }
+
+        .steam-btn {
+            background: linear-gradient(45deg, rgba(27, 40, 56, 0.9), rgba(42, 71, 94, 0.9));
+            color: white;
+            border: 1px solid rgba(66, 139, 202, 0.3);
+        }
+
+        .steam-btn:hover {
+            background: linear-gradient(45deg, rgba(42, 71, 94, 0.9), rgba(27, 40, 56, 0.9));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(66, 139, 202, 0.4);
+        }
+
+        .epic-btn {
+            background: linear-gradient(45deg, rgba(49, 49, 49, 0.9), rgba(0, 0, 0, 0.9));
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .epic-btn:hover {
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(49, 49, 49, 0.9));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .gog-btn {
+            background: linear-gradient(45deg, rgba(134, 50, 138, 0.9), rgba(184, 61, 186, 0.9));
+            color: white;
+            border: 1px solid rgba(184, 61, 186, 0.3);
+        }
+
+        .gog-btn:hover {
+            background: linear-gradient(45deg, rgba(184, 61, 186, 0.9), rgba(134, 50, 138, 0.9));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(184, 61, 186, 0.4);
+        }
+
+        .wishlist-btn {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.2), rgba(255, 69, 0, 0.2));
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .wishlist-btn:hover {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.4), rgba(255, 69, 0, 0.4));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            color: white;
+        }
+
+        /* Pie de página */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            animation: footerLine 3s ease-in-out infinite;
+        }
+
+        @keyframes footerLine {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Animaciones de entrada */
+        .game-card:nth-child(1) { animation-delay: 0.1s; }
+        .game-card:nth-child(2) { animation-delay: 0.2s; }
+        .game-card:nth-child(3) { animation-delay: 0.3s; }
+        .game-card:nth-child(4) { animation-delay: 0.4s; }
+        .game-card:nth-child(5) { animation-delay: 0.5s; }
+        .game-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividad mejorada */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            nav {
+                padding: 12px 0;
+            }
+
+            nav a {
+                padding: 12px 15px;
+                margin: 0 5px;
+                font-size: 1em;
+            }
+
+            .page-title {
+                padding: 60px 15px;
+            }
+
+            .page-title h2 {
+                font-size: 2.5em;
+            }
+
+            .games-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 0 15px;
+            }
+
+            .game-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .store-buttons {
+                flex-direction: column;
+            }
+
+            .floating-elements::before,
+            .floating-elements::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title h2 {
+                font-size: 2em;
+            }
+
+            .page-title p {
+                font-size: 1.4em;
+            }
+
+            nav a {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elementos flotantes de gaming -->
+    <div class="floating-elements"></div>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>Pixel Gaming</h1>
+        <img src="cube prev.png" alt="Logo Pixel Gaming">
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav>
+        <a href="index.html" class="back-home">🏠 Inicio</a>
+        <a href="articulos-menu.html" class="back-home">Artículos de Opinión</a>
+        <a href="juegos-recientes.html" class="back-home">Juegos Recientes</a>
+        <a href="articulos-menu.html" class="back-home" style="background: linear-gradient(45deg, rgba(255, 215, 0, 0.6), rgba(255, 69, 0, 0.6)) !important;">Juegos Por Estrenar</a>
+        <a href="acerca-de.html" class="back-home">Acerca de</a>
+    </nav>
+
+    <!-- Título de la página -->
+    <div class="page-title" style="font-family: 'Azonix', Arial, sans-serif;">
+        <h2>🚀 Juegos por Estrenar</h2>
+        <p class="page-subtitle">Los títulos más esperados que llegarán próximamente</p>
+    </div>
+
+    <!-- Contenedor de juegos -->
+    <div class="games-container">
+        
+        <!-- Juego 1 -->
+        <div class="game-card">
+            <div class="game-image" onclick="openSteamLink('https://www.rockstargames.com/VI')">
+                <img src="https://gaming-cdn.com/images/products/2462/orig/grand-theft-auto-vi-pc-juego-rockstar-cover.jpg?v=1746543065" alt="Grand Theft Auto VI">
+            </div>
+            <div class="game-info">
+                <div class="game-title" onclick="openSteamLink('https://www.rockstargames.com/VI')">
+                    Grand Theft Auto VI
+                </div>
+                <div class="game-description">
+                    La esperada secuela de la saga GTA regresa con un mundo abierto más grande y realista que nunca.
+                </div>
+                <div class="game-release-date this-year">26 De Mayo 2026</div>
+                <div class="store-buttons">
+                    <a href="https://www.rockstargames.com/VI" class="store-btn wishlist-btn">
+                        <span>❤️</span> Mas Informacion
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Juego 2 -->
+        <div class="game-card">
+            <div class="game-image" onclick="openSteamLink('https://store.steampowered.com/app/2523720/Gears_of_War_Reloaded/')">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2523720/2ba5d8203b18c38fb2d10b14e92a285a850f08ab/header.jpg?t=1750878118" alt="Gears of War">
+            </div>
+            <div class="game-info">
+                <div class="game-title" onclick="openSteamLink('https://store.steampowered.com/app/2523720/Gears_of_War_Reloaded/')">
+                    Gears of War: Reloaded
+                </div>
+                <div class="game-description">
+                    Los actos violentos y sangrientos están presentes en los combates entre los humanos y los Locust, en los que se utiliza una amplia variedad de armas, tanto cuerpo a cuerpo como a distancia.
+                </div>
+                <div class="game-release-date this-year">26 De Agosto 2025</div>
+                <div class="game-price">Mex$ 799.00</div>
+                
+                <div class="store-buttons">
+                    <a href="https://news.xbox.com/es-latam/2025/05/05/gears-of-war-reloaded-verano-2025/" class="store-btn wishlist-btn">
+                        <span>❤️</span> Mas Informacion
+                    </a>
+                    <a href="https://store.steampowered.com/app/2523720/Gears_of_War_Reloaded/" class="store-btn steam-btn" target="_blank">
+                        <span>🎮</span> Steam
+                    </a>
+                    <a href="https://www.xbox.com/es-MX/games/store/gears-of-war-reloaded-pre-order/9NZ7KCLZ1SX1" class="store-btn epic-btn" target="_blank">
+                        <span>💻</span> Microsoft Store
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Juego 3 -->
+        <div class="game-card">
+            <div class="game-image" onclick="openSteamLink('https://store.steampowered.com/app/2417610/METAL_GEAR_SOLID_D_SNAKE_EATER/')">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2417610/header.jpg?t=1749734161" alt="Metal Gear">
+            </div>
+            <div class="game-info">
+                <div class="game-title" onclick="openSteamLink('https://store.steampowered.com/app/2417610/METAL_GEAR_SOLID_D_SNAKE_EATER/')">
+                    METAL GEAR SOLID Δ: SNAKE EATER
+                </div>
+                <div class="game-description">
+                    La experiencia del original, evolucionada y más inmersiva que nunca.
+Una adaptación del juego METAL GEAR SOLID 3: SNAKE EATER de 2004, con la historia irresistible y el mundo fascinante que ya conoces, ahora con gráficos renovados y sonido 3D que potencian el ambiente selvático. Prepárate para la experiencia definitiva de supervivencia, sigilo y acción.
+                </div>
+                <div class="game-release-date this-year">28 De Agosto 2025</div>
+                <div class="game-price">Mex$ 1,195.00</div>
+                <div class="store-buttons">
+                    <a href="https://www.konami.com/mg/mgs3r/us/es-mx/" class="store-btn wishlist-btn">
+                        <span>❤️</span> Mas Informacion
+                    </a>
+                    <a href="https://store.steampowered.com/app/2417610/METAL_GEAR_SOLID_D_SNAKE_EATER/" class="store-btn steam-btn" target="_blank">
+                        <span>🎮</span> Steam
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Juego 4-->
+        <div class="game-card">
+            <div class="game-image" onclick="openWishlistLink('https://store.steampowered.com/app/1285190/Borderlands_4/')">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1285190/986a88d1b0e1420b00183def2a7034508353afa3/header.jpg?t=1751324864" alt="Borderlands 4">
+            </div>
+            <div class="game-info">
+                <div class="game-title" onclick="openWishlistLink('https://store.steampowered.com/app/1285190/Borderlands_4/')">
+                    Borderlands 4
+                </div>
+                <div class="game-description">
+                    Entra a Kairos como uno de los cuatro nuevos cazabóvedas en busca de riqueza y gloria. Usa poderosas habilidades de acción, personaliza tu equipo con extensos árboles de habilidades y domina a tus enemigos con dinámicas habilidades de movimiento.
+                </div>
+                <div class="game-release-date this-year">12 De Septiembre 2025</div>
+                <div class="game-price">Mex$ 1,399.00</div>
+                <div class="store-buttons">
+                    <a href="https://borderlands.2k.com/es-MX/borderlands-4/" class="store-btn wishlist-btn">
+                        <span>❤️</span> Mas Informacion
+                    </a>
+                    <a href="https://store.steampowered.com/app/1285190/Borderlands_4/" class="store-btn steam-btn" target="_blank">
+                        <span>🎮</span> Steam
+                    </a>
+                    <a href="https://store.epicgames.com/es-MX/p/borderlands-4" class="store-btn epic-btn" target="_blank">
+                        <span>🎯</span> Epic Games
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-card">
+                <div class="game-image" onclick="openWishlistLink('https://store.steampowered.com/app/2486820/Sonic_Racing_CrossWorlds/')">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2486820/header.jpg?t=1750924256" alt="Sonic Racing">
+                </div>
+                <div class="game-info">
+                    <div class="game-title" onclick="openWishlistLink('https://store.steampowered.com/app/2486820/Sonic_Racing_CrossWorlds/')">
+                        Sonic Racing: CrossWorlds
+                    </div>
+                    <div class="game-description">
+                        ¡Corre por tierra, mar, aire y espacio en Sonic Racing: CrossWorlds! Usa los Rings de travesía para teletransportarte a dimensiones nuevas donde te esperan novedades en cada curva.
+                    </div>
+                    <div class="game-release-date this-year">25 De Septiembre 2025</div>
+                    <div class="game-price">Mex$ 1,209.00</div>
+                    <div class="store-buttons">
+                        <a href="https://asia.sega.com/SonicRacingCrossWorlds/en/" class="store-btn wishlist-btn">
+                            <span>❤️</span> Mas Informacion
+                        </a>
+                        <a href="https://store.steampowered.com/app/2486820/Sonic_Racing_CrossWorlds/" class="store-btn steam-btn" target="_blank">
+                            <span>🎮</span> Steam
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <div class="game-image" onclick="openWishlistLink('https://store.steampowered.com/app/2947440/SILENT_HILL_f/')">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2947440/7e5d923ac622bd1775ebc9b5d4b5b0a24bf5ed40/header.jpg?t=1749078762" alt="Silent Hill">
+                </div>
+                <div class="game-info">
+                    <div class="game-title" onclick="openWishlistLink('https://store.steampowered.com/app/2947440/SILENT_HILL_f/')">
+                        SILENT HILL f
+                    </div>
+                    <div class="game-description">
+                        En el Japón de los años 60, Ebisugaoka, la apartada ciudad de Hinako Shimizu, queda envuelta en una repentina niebla, lo que transforma su hogar en una auténtica pesadilla. Mientras la ciudad queda en silencio y la niebla se espesa, Hinako debe recorrer los retorcidos caminos de Ebisugaoka, a fin de resolver complejos acertijos y enfrentarse a monstruos grotescos para sobrevivir.
+                    </div>
+                    <div class="game-release-date this-year">24 De Septiembre 2025</div>
+                    <div class="game-price">Mex$ 1,209.00</div>
+                    <div class="store-buttons">
+                        <a href="https://www.konami.com/games/silenthill/f/us/es-mx/" class="store-btn wishlist-btn">
+                            <span>❤️</span> Mas Informacion
+                        </a>
+                        <a href="https://store.steampowered.com/app/2947440/SILENT_HILL_f/" class="store-btn steam-btn" target="_blank">
+                            <span>🎮</span> Steam
+                        </a>
+                        <a href="https://store.epicgames.com/es-MX/p/silent-hill-f-714aed" class="store-btn epic-btn" target="_blank">
+                        <span>🎯</span> Epic Games
+                        </a>
+                        <a href="https://www.xbox.com/es-MX/games/store/silent-hill-f/9NWTMTLS2ZPB" class="store-btn epic-btn" target="_blank">
+                        <span>💻</span> Microsoft Store
+                        </a>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="game-card">
+                <div class="game-image" onclick="openWishlistLink('https://store.steampowered.com/app/1449110/The_Outer_Worlds_2/')">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449110/fe273e39cbaf4997d1c8e53879800f07dba0ee03/header.jpg?t=1751044573" alt="Outer Worlds">
+                </div>
+                <div class="game-info">
+                    <div class="game-title" onclick="openWishlistLink('https://store.steampowered.com/app/1449110/The_Outer_Worlds_2/')">
+                        The Outer Worlds 2
+                    </div>
+                    <div class="game-description">
+                        The Outer Worlds 2 es la secuela del galardonado RPG de ciencia ficción en primera persona de Obsidian Entertainment. (¿Notaste toda la adjetivación de esa frase?) Despeja tu calendario y prepárate para una aventura llena de acción con un miembro de la tripulación, armas y enemigos renovados en una nueva colonia. ¡Muchas cosas nuevas!
+                    </div>
+                    <div class="game-release-date this-year">29 De Octubre 2025</div>
+                    <div class="game-price">Mex$ 1,599.00</div>
+                    <div class="store-buttons">
+                        <a href="https://outerworlds2.obsidian.net/" class="store-btn wishlist-btn">
+                            <span>❤️</span> Mas Informacion
+                        </a>
+                        <a href="https://store.steampowered.com/app/1449110/The_Outer_Worlds_2/" class="store-btn steam-btn" target="_blank">
+                            <span>🎮</span> Steam
+                        </a>
+                        <a href="https://us.shop.battle.net/en-us/product/the-outer-worlds-2#optLogin=true" class="store-btn gog-btn" target="_blank">
+                        <span>🌟</span> Battle Net
+                        </a>
+                        <a href="https://www.xbox.com/es-MX/games/store/the-outer-worlds-2-standard-preorder-edition/9NSPRSXXZZLG/0017" class="store-btn epic-btn" target="_blank">
+                        <span>💻</span> Microsoft Store
+                        </a>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="game-card">
+                <div class="game-image" onclick="openWishlistLink('https://store.steampowered.com/app/1962700/Subnautica_2/')">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/header.jpg?t=1749174918" alt="Subnautica">
+                </div>
+                <div class="game-info">
+                    <div class="game-title" onclick="openWishlistLink('https://store.steampowered.com/app/1962700/Subnautica_2/')">
+                        Subnautica 2
+                    </div>
+                    <div class="game-description">
+                        Subnautica 2 es un juego de supervivencia y aventura submarina que transcurre en un mundo oceánico alienígena totalmente nuevo. Es el capítulo siguiente del universo Subnautica, desarrollado por Unknown Worlds.
+                    </div>
+                    <div class="game-release-date this-year">2025</div>
+                    <div class="store-buttons">
+                        <a href="https://subnautica.com/es-mx" class="store-btn wishlist-btn">
+                            <span>❤️</span> Mas Informacion
+                        </a>
+                        <a href="https://store.steampowered.com/app/1962700/Subnautica_2/" class="store-btn steam-btn" target="_blank">
+                        <span>🎮</span> Steam
+                        <a href="https://www.xbox.com/es-MX/games/store/subnautica-2/9PJPCB188SVG" class="store-btn epic-btn" target="_blank">
+                        <span>💻</span> Microsoft Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <div class="game-image" onclick="openWishlistLink('https://store.steampowered.com/app/3764200/Resident_Evil_Requiem/')">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/d478bccdd167e0d8e1f4760bcad7e6bcbbb3258d/header.jpg?t=1750810100" alt="Resident Evil">
+                </div>
+                <div class="game-info">
+                    <div class="game-title" onclick="openWishlistLink('https://store.steampowered.com/app/3764200/Resident_Evil_Requiem/')">
+                        Resident Evil Requiem
+                    </div>
+                    <div class="game-description">
+                    Resident Evil Requiem es el noveno título de la saga principal de Resident Evil. Prepárate para escapar de la muerte a través de una experiencia que te helará hasta lo más profundo de tu ser. Los avances tecnológicos y la amplia experiencia del equipo de desarrollo se combinan en una trama con personajes profundos y una jugabilidad más envolvente que nunca.
+                    </div>
+                    <div class="game-release-date this-year">27 De Febrero 2026</div>
+                    <div class="store-buttons">
+                        <a href="https://www.residentevil.com/requiem/es-us/" class="store-btn wishlist-btn">
+                            <span>❤️</span> Mas Informacion
+                        </a>
+                        <a href="https://store.steampowered.com/app/3764200/Resident_Evil_Requiem/" class="store-btn steam-btn" target="_blank">
+                        <span>🎮</span> Steam
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    
+        <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 Pixel Gaming - Todos los derechos reservados</p>
+        <p>Los precios pueden variar según la región y las ofertas activas</p>
+    </footer>
+
+    <script>
+        function openSteamLink(url) {
+            window.open(url, '_blank');
+        }
+
+        // Efecto de parallax suave en el scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            document.body.style.backgroundPosition = `center ${rate}px`;
+        });
+
+        // Lazy loading para las imágenes
+        const images = document.querySelectorAll('img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '1';
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s';
+            imageObserver.observe(img);
+        });
+    </script>
+
+</body>
+</html>
